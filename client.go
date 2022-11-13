@@ -165,8 +165,11 @@ func (c *Client) Segments(ctx context.Context, stream string, since int) ([]Stre
 
 	for {
 		seg, err := srv.Recv()
-		if err == io.EOF {
-			break
+		if err != nil {
+			if err == io.EOF || err == ctx.Err() {
+				break
+			}
+			return nil, err
 		}
 
 		segments = append(segments, StreamSegment{
