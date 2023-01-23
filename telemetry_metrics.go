@@ -23,7 +23,9 @@ func (m *Metrics) MarshalJSON() ([]byte, error) {
 	// Marshal the field
 	marshaled := make([]json.RawMessage, len(m.OTLP))
 	for i, v := range m.OTLP {
-		b, err := protojson.Marshal(v)
+		b, err := protojson.MarshalOptions{
+			UseProtoNames: true,
+		}.Marshal(v)
 		if err != nil {
 			return nil, err
 		}
