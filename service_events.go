@@ -58,8 +58,8 @@ func (e *serviceEvents) create(config eventConfig) *eventEmitter {
 	defer e.mu.Unlock()
 
 	id := newEventIdFromConfig(config)
-	if _, ok := e.events[id]; ok {
-		return nil
+	if se, ok := e.events[id]; ok {
+		return se.emitter
 	}
 
 	stream := e.streams.create()
