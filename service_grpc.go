@@ -91,7 +91,7 @@ func (s *Service) GetEventDescriptors(req *pb.GetEventDescriptorsRequest, srv pb
 	return nil
 }
 
-func (s *Service) GetCapture(req *pb.GetStreamRequest, srv pb.Telemetry_GetStreamServer) error {
+func (s *Service) GetStream(req *pb.GetStreamRequest, srv pb.Telemetry_GetStreamServer) error {
 	streamId := serviceStreamId(req.GetStreamId())
 	stream := s.streams.get(streamId)
 	if stream == nil {
