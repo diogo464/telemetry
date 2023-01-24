@@ -2,6 +2,7 @@ package telemetry
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/diogo464/telemetry/internal/pb"
 	"github.com/diogo464/telemetry/internal/stream"
@@ -51,17 +52,12 @@ func (s *Service) GetProperties(req *pb.GetPropertiesRequest, srv pb.Telemetry_G
 }
 
 func (s *Service) GetMetricDescriptors(req *pb.GetMetricDescriptorsRequest, srv pb.Telemetry_GetMetricDescriptorsServer) error {
-	s.metrics.mu.Lock()
-	pbdescs := make([]*pb.MetricDescriptor, 0, len(s.metrics.descriptors))
-	pbdescs = append(pbdescs, s.metrics.descriptors...)
-	s.metrics.mu.Unlock()
-
-	for _, desc := range pbdescs {
+	descriptors := s.metrics.copyDescriptors()
+	for _, desc := range descriptors {
 		if err := srv.Send(desc); err != nil {
 			return err
 		}
 	}
-
 	return nil
 }
 
@@ -107,6 +103,7 @@ func grpcSendStreamSegments(stream *stream.Stream, since int, srv grpcSegmentSen
 			break
 		}
 		since += len(segments)
+		fmt.Println("Sending", len(segments), "segments")
 		for _, segment := range segments {
 			err := srv.Send(&pb.StreamSegment{
 				SequenceNumber: uint32(segment.SeqN),

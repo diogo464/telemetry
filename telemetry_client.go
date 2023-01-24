@@ -381,6 +381,7 @@ func (c *Client) GetEventDescriptors(ctx context.Context) ([]EventDescriptor, er
 }
 
 func (c *Client) GetEvent(ctx context.Context, id uint32) ([]Event, error) {
+	fmt.Println("Getting events")
 	client, err := c.newGrpcClient()
 	if err != nil {
 		return nil, err
@@ -415,6 +416,7 @@ func (c *Client) GetEvent(ctx context.Context, id uint32) ([]Event, error) {
 			})
 		}
 
+		fmt.Println("Event seqn: ", segment.SeqN)
 		if segment.SeqN > c.s.eventsSeqN[id] {
 			c.s.eventsSeqN[id] = segment.SeqN
 		}
