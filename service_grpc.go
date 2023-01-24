@@ -30,6 +30,26 @@ func (s *Service) GetSession(ctx context.Context, req *pb.GetSessionRequest) (*p
 	}, nil
 }
 
+func (s *Service) GetPropertyDescriptors(req *pb.GetPropertyDescriptorsRequest, srv pb.Telemetry_GetPropertyDescriptorsServer) error {
+	descriptors := s.properties.copyDescriptors()
+	for _, desc := range descriptors {
+		if err := srv.Send(desc); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (s *Service) GetProperties(req *pb.GetPropertiesRequest, srv pb.Telemetry_GetPropertiesServer) error {
+	properties := s.properties.copyProperties()
+	for _, v := range properties {
+		if err := srv.Send(v); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 func (s *Service) GetMetricDescriptors(req *pb.GetMetricDescriptorsRequest, srv pb.Telemetry_GetMetricDescriptorsServer) error {
 	s.metrics.mu.Lock()
 	pbdescs := make([]*pb.MetricDescriptor, 0, len(s.metrics.descriptors))
@@ -51,58 +71,8 @@ func (s *Service) GetMetrics(req *pb.GetMetricsRequest, srv pb.Telemetry_GetMetr
 	return grpcSendStreamSegments(stream, int(since), srv)
 }
 
-func (s *Service) GetPropertyDescriptors(req *pb.GetPropertyDescriptorsRequest, srv pb.Telemetry_GetPropertyDescriptorsServer) error {
-	properties := s.properties
-
-	properties.mu.Lock()
-	pbdescs := make([]*pb.PropertyDescriptor, 0, len(properties.properties))
-	for idx, p := range properties.properties {
-		pbdescs = append(pbdescs, &pb.PropertyDescriptor{
-			Id:          uint32(idx),
-			Scope:       p.pbproperty.GetScope(),
-			Name:        p.pbproperty.GetName(),
-			Description: p.pbproperty.GetDescription(),
-		})
-	}
-	properties.mu.Unlock()
-
-	for _, desc := range pbdescs {
-		if err := srv.Send(desc); err != nil {
-			return err
-		}
-	}
-
-	return nil
-}
-
-func (s *Service) GetProperties(req *pb.GetPropertiesRequest, srv pb.Telemetry_GetPropertiesServer) error {
-	properties := s.properties
-
-	properties.mu.Lock()
-	pbprops := make([]*pb.Property, 0, len(properties.properties))
-	for _, p := range properties.properties {
-		pbprops = append(pbprops, p.pbproperty)
-	}
-	properties.mu.Unlock()
-
-	for _, v := range pbprops {
-		if err := srv.Send(v); err != nil {
-			return err
-		}
-	}
-	return nil
-}
-
 func (s *Service) GetCaptureDescriptors(req *pb.GetCaptureDescriptorsRequest, srv pb.Telemetry_GetCaptureDescriptorsServer) error {
-	captures := s.captures
-
-	captures.mu.Lock()
-	descriptors := make([]*pb.CaptureDescriptor, 0, len(captures.captures))
-	for _, c := range captures.captures {
-		descriptors = append(descriptors, c.pbdescriptor)
-	}
-	captures.mu.Unlock()
-
+	descriptors := s.captures.copyDescriptors()
 	for _, v := range descriptors {
 		if err := srv.Send(v); err != nil {
 			return err
@@ -111,49 +81,23 @@ func (s *Service) GetCaptureDescriptors(req *pb.GetCaptureDescriptorsRequest, sr
 	return nil
 }
 
-func (s *Service) GetCapture(req *pb.GetCaptureRequest, srv pb.Telemetry_GetCaptureServer) error {
-	captures := s.captures
-
-	captures.mu.Lock()
-	capture := captures.captures[req.GetId()]
-	captures.mu.Unlock()
-
-	if capture == nil {
-		return ErrCaptureNotAvailable
-	}
-	return grpcSendStreamSegments(capture.stream, int(req.GetSequenceNumberSince()), srv)
-}
-
 func (s *Service) GetEventDescriptors(req *pb.GetEventDescriptorsRequest, srv pb.Telemetry_GetEventDescriptorsServer) error {
-	events := s.events
-	events.mu.Lock()
-	descriptors := make([]*pb.EventDescriptor, 0, len(events.events))
-	for _, e := range events.events {
-		descriptors = append(descriptors, e.descriptor)
-	}
-	events.mu.Unlock()
-
+	descriptors := s.events.copyDescriptors()
 	for _, desc := range descriptors {
 		if err := srv.Send(desc); err != nil {
 			return err
 		}
 	}
-
 	return nil
 }
 
-func (s *Service) GetEvent(req *pb.GetEventRequest, srv pb.Telemetry_GetEventServer) error {
-	events := s.events
-
-	events.mu.Lock()
-	e := events.events[req.GetId()]
-	if e == nil {
-		return ErrEventNotAvailable
+func (s *Service) GetCapture(req *pb.GetStreamRequest, srv pb.Telemetry_GetStreamServer) error {
+	streamId := serviceStreamId(req.GetStreamId())
+	stream := s.streams.get(streamId)
+	if stream == nil {
+		return ErrStreamNotAvailable
 	}
-	evstream := e.stream
-	events.mu.Unlock()
-
-	return grpcSendStreamSegments(evstream, int(req.GetSequenceNumberSince()), srv)
+	return grpcSendStreamSegments(stream.stream, int(req.GetSequenceNumberSince()), srv)
 }
 
 func grpcSendStreamSegments(stream *stream.Stream, since int, srv grpcSegmentSender) error {

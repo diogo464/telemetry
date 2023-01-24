@@ -6,6 +6,11 @@ option go_package = "internal/pb";
 service Telemetry {
   rpc GetSession(GetSessionRequest) returns (GetSessionResponse);
 
+  rpc GetPropertyDescriptors(GetPropertyDescriptorsRequest)
+      returns (stream PropertyDescriptor);
+
+  rpc GetProperties(GetPropertiesRequest) returns (stream Property);
+
   rpc GetMetricDescriptors(GetMetricDescriptorsRequest)
       returns (stream MetricDescriptor);
 
@@ -13,21 +18,18 @@ service Telemetry {
   // https://github.com/open-telemetry/opentelemetry-proto/blob/main/opentelemetry/proto/metrics/v1/metrics.proto
   rpc GetMetrics(GetMetricsRequest) returns (stream StreamSegment);
 
-  rpc GetPropertyDescriptors(GetPropertyDescriptorsRequest) returns (stream PropertyDescriptor);
-
-  rpc GetProperties(GetPropertiesRequest) returns (stream Property);
-
   rpc GetCaptureDescriptors(GetCaptureDescriptorsRequest)
       returns (stream CaptureDescriptor);
-
-  // The data in the segment is JSON.
-  rpc GetCapture(GetCaptureRequest) returns (stream StreamSegment);
 
   rpc GetEventDescriptors(GetEventDescriptorsRequest)
       returns (stream EventDescriptor);
 
-  // The data in the segment is JSON.
-  rpc GetEvent(GetEventRequest) returns (stream StreamSegment);
+  rpc GetStream(GetStreamRequest) returns (stream StreamSegment);
+}
+
+message StreamSegment {
+  uint32 sequence_number = 1;
+  bytes data = 2;
 }
 
 message GetSessionRequest {}
@@ -36,9 +38,16 @@ message GetSessionResponse {
   string uuid = 1;
 }
 
-message StreamSegment {
-  uint32 sequence_number = 1;
-  bytes data = 2;
+message GetPropertiesRequest {}
+message Property {
+  uint32 id = 1;
+  string scope = 2;
+  string name = 3;
+  string description = 4;
+  oneof value {
+    int64 integer_value = 5;
+    string string_value = 6;
+  }
 }
 
 message GetMetricDescriptorsRequest {}
@@ -61,41 +70,24 @@ message PropertyDescriptor {
   string description = 4;
 }
 
-message GetPropertiesRequest {}
-message Property {
-  uint32 id = 1;
-  string scope = 2;
-  string name = 3;
-  string description = 4;
-  oneof value {
-    int64 integer_value = 5;
-    string string_value = 6;
-  }
-}
-
 message GetCaptureDescriptorsRequest {}
 message CaptureDescriptor {
-  uint32 id = 1;
+  uint32 stream_id = 1;
   string scope = 2;
   string name = 3;
   string description = 4;
-}
-
-message GetCaptureRequest {
-  // The sequence number of the first segment that should be returned.
-  uint32 sequence_number_since = 1;
-  uint32 id = 2;
 }
 
 message GetEventDescriptorsRequest {}
 message EventDescriptor {
-  uint32 id = 1;
+  uint32 stream_id = 1;
   string scope = 2;
   string name = 3;
   string description = 4;
 }
 
-message GetEventRequest {
-  uint32 sequence_number_since = 1;
-  uint32 id = 2;
+message GetStreamRequest {
+  uint32 stream_id = 1;
+  // The sequence number of the first segment that should be returned.
+  uint32 sequence_number_since = 2;
 }

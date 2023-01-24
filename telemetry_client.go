@@ -300,12 +300,7 @@ func (c *Client) GetCaptureDescriptors(ctx context.Context) ([]CaptureDescriptor
 		if err != nil {
 			return nil, err
 		}
-		descriptors = append(descriptors, CaptureDescriptor{
-			ID:          pbdesc.GetId(),
-			Scope:       pbdesc.GetScope(),
-			Name:        pbdesc.GetName(),
-			Description: pbdesc.GetDescription(),
-		})
+		descriptors = append(descriptors, captureDescriptorFromPb(pbdesc))
 	}
 
 	return descriptors, nil
@@ -317,9 +312,9 @@ func (c *Client) GetCapture(ctx context.Context, id uint32) ([]Capture, error) {
 		return nil, err
 	}
 
-	srv, err := client.GetCapture(ctx, &pb.GetCaptureRequest{
+	srv, err := client.GetStream(ctx, &pb.GetStreamRequest{
+		StreamId:            id,
 		SequenceNumberSince: uint32(c.s.capturesSeqN[id]),
-		Id:                  id,
 	})
 	if err != nil {
 		return nil, err
@@ -375,7 +370,7 @@ func (c *Client) GetEventDescriptors(ctx context.Context) ([]EventDescriptor, er
 			return nil, err
 		}
 		descriptors = append(descriptors, EventDescriptor{
-			ID:          pbdesc.GetId(),
+			StreamId:    serviceStreamId(pbdesc.GetStreamId()),
 			Scope:       pbdesc.GetScope(),
 			Name:        pbdesc.GetName(),
 			Description: pbdesc.GetDescription(),
@@ -391,9 +386,9 @@ func (c *Client) GetEvent(ctx context.Context, id uint32) ([]Event, error) {
 		return nil, err
 	}
 
-	srv, err := client.GetEvent(ctx, &pb.GetEventRequest{
+	srv, err := client.GetStream(ctx, &pb.GetStreamRequest{
+		StreamId:            id,
 		SequenceNumberSince: uint32(c.s.eventsSeqN[id]),
-		Id:                  id,
 	})
 	if err != nil {
 		return nil, err
