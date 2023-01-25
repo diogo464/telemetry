@@ -6,23 +6,23 @@ import (
 	"github.com/diogo464/telemetry/internal/stream"
 )
 
-type serviceStreamId uint32
+type StreamId uint32
 
 type serviceStream struct {
 	stream   *stream.Stream
-	streamId serviceStreamId
+	streamId StreamId
 }
 
 type serviceStreams struct {
 	mu             sync.Mutex
-	streams        map[serviceStreamId]*serviceStream
-	nextID         serviceStreamId
+	streams        map[StreamId]*serviceStream
+	nextID         StreamId
 	defaultOptions []stream.Option
 }
 
 func newServiceStreams(defaultOptions ...stream.Option) *serviceStreams {
 	return &serviceStreams{
-		streams:        make(map[serviceStreamId]*serviceStream),
+		streams:        make(map[StreamId]*serviceStream),
 		defaultOptions: defaultOptions,
 	}
 }
@@ -46,7 +46,7 @@ func (s *serviceStreams) create(options ...stream.Option) *serviceStream {
 	return s.streams[id]
 }
 
-func (s *serviceStreams) has(id serviceStreamId) bool {
+func (s *serviceStreams) has(id StreamId) bool {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
@@ -54,7 +54,7 @@ func (s *serviceStreams) has(id serviceStreamId) bool {
 	return ok
 }
 
-func (s *serviceStreams) get(id serviceStreamId) *serviceStream {
+func (s *serviceStreams) get(id StreamId) *serviceStream {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 

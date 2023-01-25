@@ -430,54 +430,6 @@ func (m *MetricDescriptor) GetDescription() string {
 	return ""
 }
 
-type GetMetricsRequest struct {
-	// The sequence number of the first segment that should be returned.
-	SequenceNumberSince  uint32   `protobuf:"varint,1,opt,name=sequence_number_since,json=sequenceNumberSince,proto3" json:"sequence_number_since,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GetMetricsRequest) Reset()         { *m = GetMetricsRequest{} }
-func (m *GetMetricsRequest) String() string { return proto.CompactTextString(m) }
-func (*GetMetricsRequest) ProtoMessage()    {}
-func (*GetMetricsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_bc89ab50aa324a98, []int{7}
-}
-func (m *GetMetricsRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *GetMetricsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_GetMetricsRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *GetMetricsRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetMetricsRequest.Merge(m, src)
-}
-func (m *GetMetricsRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *GetMetricsRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetMetricsRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetMetricsRequest proto.InternalMessageInfo
-
-func (m *GetMetricsRequest) GetSequenceNumberSince() uint32 {
-	if m != nil {
-		return m.SequenceNumberSince
-	}
-	return 0
-}
-
 type GetPropertyDescriptorsRequest struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -488,7 +440,7 @@ func (m *GetPropertyDescriptorsRequest) Reset()         { *m = GetPropertyDescri
 func (m *GetPropertyDescriptorsRequest) String() string { return proto.CompactTextString(m) }
 func (*GetPropertyDescriptorsRequest) ProtoMessage()    {}
 func (*GetPropertyDescriptorsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_bc89ab50aa324a98, []int{8}
+	return fileDescriptor_bc89ab50aa324a98, []int{7}
 }
 func (m *GetPropertyDescriptorsRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -531,7 +483,7 @@ func (m *PropertyDescriptor) Reset()         { *m = PropertyDescriptor{} }
 func (m *PropertyDescriptor) String() string { return proto.CompactTextString(m) }
 func (*PropertyDescriptor) ProtoMessage()    {}
 func (*PropertyDescriptor) Descriptor() ([]byte, []int) {
-	return fileDescriptor_bc89ab50aa324a98, []int{9}
+	return fileDescriptor_bc89ab50aa324a98, []int{8}
 }
 func (m *PropertyDescriptor) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -598,7 +550,7 @@ func (m *GetCaptureDescriptorsRequest) Reset()         { *m = GetCaptureDescript
 func (m *GetCaptureDescriptorsRequest) String() string { return proto.CompactTextString(m) }
 func (*GetCaptureDescriptorsRequest) ProtoMessage()    {}
 func (*GetCaptureDescriptorsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_bc89ab50aa324a98, []int{10}
+	return fileDescriptor_bc89ab50aa324a98, []int{9}
 }
 func (m *GetCaptureDescriptorsRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -641,7 +593,7 @@ func (m *CaptureDescriptor) Reset()         { *m = CaptureDescriptor{} }
 func (m *CaptureDescriptor) String() string { return proto.CompactTextString(m) }
 func (*CaptureDescriptor) ProtoMessage()    {}
 func (*CaptureDescriptor) Descriptor() ([]byte, []int) {
-	return fileDescriptor_bc89ab50aa324a98, []int{11}
+	return fileDescriptor_bc89ab50aa324a98, []int{10}
 }
 func (m *CaptureDescriptor) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -708,7 +660,7 @@ func (m *GetEventDescriptorsRequest) Reset()         { *m = GetEventDescriptorsR
 func (m *GetEventDescriptorsRequest) String() string { return proto.CompactTextString(m) }
 func (*GetEventDescriptorsRequest) ProtoMessage()    {}
 func (*GetEventDescriptorsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_bc89ab50aa324a98, []int{12}
+	return fileDescriptor_bc89ab50aa324a98, []int{11}
 }
 func (m *GetEventDescriptorsRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -751,7 +703,7 @@ func (m *EventDescriptor) Reset()         { *m = EventDescriptor{} }
 func (m *EventDescriptor) String() string { return proto.CompactTextString(m) }
 func (*EventDescriptor) ProtoMessage()    {}
 func (*EventDescriptor) Descriptor() ([]byte, []int) {
-	return fileDescriptor_bc89ab50aa324a98, []int{13}
+	return fileDescriptor_bc89ab50aa324a98, []int{12}
 }
 func (m *EventDescriptor) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -821,7 +773,7 @@ func (m *GetStreamRequest) Reset()         { *m = GetStreamRequest{} }
 func (m *GetStreamRequest) String() string { return proto.CompactTextString(m) }
 func (*GetStreamRequest) ProtoMessage()    {}
 func (*GetStreamRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_bc89ab50aa324a98, []int{14}
+	return fileDescriptor_bc89ab50aa324a98, []int{13}
 }
 func (m *GetStreamRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -872,7 +824,6 @@ func init() {
 	proto.RegisterType((*Property)(nil), "telemetry.Property")
 	proto.RegisterType((*GetMetricDescriptorsRequest)(nil), "telemetry.GetMetricDescriptorsRequest")
 	proto.RegisterType((*MetricDescriptor)(nil), "telemetry.MetricDescriptor")
-	proto.RegisterType((*GetMetricsRequest)(nil), "telemetry.GetMetricsRequest")
 	proto.RegisterType((*GetPropertyDescriptorsRequest)(nil), "telemetry.GetPropertyDescriptorsRequest")
 	proto.RegisterType((*PropertyDescriptor)(nil), "telemetry.PropertyDescriptor")
 	proto.RegisterType((*GetCaptureDescriptorsRequest)(nil), "telemetry.GetCaptureDescriptorsRequest")
@@ -885,47 +836,45 @@ func init() {
 func init() { proto.RegisterFile("internal/pb/telemetry.proto", fileDescriptor_bc89ab50aa324a98) }
 
 var fileDescriptor_bc89ab50aa324a98 = []byte{
-	// 625 bytes of a gzipped FileDescriptorProto
+	// 596 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xbc, 0x55, 0xdd, 0x4e, 0xdb, 0x4c,
-	0x10, 0x65, 0x03, 0xe1, 0x23, 0x03, 0xe1, 0x67, 0x02, 0x28, 0x9f, 0x03, 0x21, 0x72, 0x45, 0xc9,
-	0x15, 0x44, 0xf4, 0x0d, 0x28, 0xad, 0x41, 0x6a, 0xab, 0xca, 0xa9, 0x7a, 0x81, 0xd4, 0xa6, 0xc6,
-	0x19, 0x21, 0x4b, 0x64, 0xed, 0xee, 0xae, 0x91, 0xa8, 0xfa, 0x4e, 0x7d, 0x80, 0xbe, 0x40, 0x2f,
-	0xfb, 0x08, 0x15, 0x4f, 0x52, 0x79, 0x63, 0x27, 0xfe, 0xe5, 0xaa, 0xed, 0xdd, 0xe6, 0xcc, 0xc9,
-	0xec, 0x9c, 0x9d, 0x39, 0x63, 0xe8, 0x78, 0x5c, 0x91, 0xe0, 0xce, 0xed, 0x49, 0x70, 0x7d, 0xa2,
-	0xe8, 0x96, 0x26, 0xa4, 0xc4, 0xfd, 0x71, 0x20, 0x7c, 0xe5, 0x63, 0x63, 0x06, 0x98, 0xaf, 0xa0,
-	0x39, 0x54, 0x82, 0x9c, 0xc9, 0x90, 0x6e, 0x26, 0xc4, 0x15, 0x1e, 0xc1, 0x86, 0xa4, 0xcf, 0x21,
-	0x71, 0x97, 0x46, 0x3c, 0x9c, 0x5c, 0x93, 0x68, 0xb3, 0x1e, 0xeb, 0x37, 0xed, 0xf5, 0x04, 0x7e,
-	0xa3, 0x51, 0x44, 0x58, 0x1a, 0x3b, 0xca, 0x69, 0xd7, 0x7a, 0xac, 0xbf, 0x66, 0xeb, 0xb3, 0xd9,
-	0x82, 0x2d, 0x8b, 0xd4, 0x90, 0xa4, 0xf4, 0x7c, 0x6e, 0x47, 0x7c, 0xa9, 0xcc, 0x3e, 0x60, 0x1a,
-	0x94, 0x81, 0xcf, 0x25, 0x45, 0x7f, 0x0f, 0x43, 0x6f, 0xac, 0x93, 0x37, 0x6c, 0x7d, 0x36, 0x77,
-	0x61, 0xdb, 0x22, 0xf5, 0x56, 0xf8, 0x01, 0x09, 0xe5, 0x91, 0x4c, 0x32, 0x7c, 0x67, 0xb0, 0x12,
-	0xa3, 0xf7, 0xb8, 0x0e, 0xb5, 0xf8, 0x6f, 0x4d, 0xbb, 0xe6, 0x8d, 0x71, 0x1b, 0xea, 0xd2, 0xf5,
-	0x03, 0xd2, 0x85, 0x34, 0xec, 0xe9, 0x8f, 0x28, 0x3d, 0x77, 0x26, 0xd4, 0x5e, 0x9c, 0xa6, 0x8f,
-	0xce, 0xd8, 0x83, 0xd5, 0x31, 0x49, 0x57, 0x78, 0x81, 0xf2, 0x7c, 0xde, 0x5e, 0xd2, 0xa1, 0x34,
-	0x84, 0x87, 0xd0, 0x8c, 0xde, 0xed, 0x86, 0xc4, 0xe8, 0xce, 0xb9, 0x0d, 0xa9, 0x5d, 0xef, 0xb1,
-	0xfe, 0xe2, 0xc5, 0x82, 0xbd, 0x16, 0xc3, 0xef, 0x23, 0x14, 0x9f, 0xc0, 0x9a, 0x54, 0xc2, 0xe3,
-	0x37, 0x31, 0x6b, 0x39, 0xca, 0x74, 0xb1, 0x60, 0xaf, 0x4e, 0x51, 0x4d, 0x3a, 0xfb, 0x0f, 0xea,
-	0x3a, 0x6a, 0xee, 0x43, 0xc7, 0x22, 0xf5, 0x9a, 0x94, 0xf0, 0xdc, 0xf3, 0xf8, 0x32, 0x5f, 0xcc,
-	0xc4, 0x7d, 0x84, 0xcd, 0x7c, 0x6c, 0xae, 0x89, 0x95, 0x69, 0xaa, 0x55, 0x6b, 0x5a, 0x2c, 0x68,
-	0x32, 0x2d, 0xdd, 0x93, 0xe9, 0x15, 0xc9, 0xa5, 0x78, 0x0a, 0x3b, 0xb9, 0x2e, 0x8f, 0xa4, 0xc7,
-	0x5d, 0x8a, 0xdf, 0xb5, 0x95, 0xed, 0xf5, 0x30, 0x0a, 0x99, 0x07, 0xb0, 0x3f, 0xef, 0xce, 0x7d,
-	0x89, 0x92, 0x00, 0xb0, 0x18, 0xfd, 0x9b, 0xfd, 0x32, 0xbb, 0xb0, 0x67, 0x91, 0x7a, 0xee, 0x04,
-	0x2a, 0x14, 0x54, 0x52, 0xd1, 0x57, 0xd8, 0x2a, 0x04, 0xb1, 0x03, 0x0d, 0xa9, 0x47, 0x7e, 0x34,
-	0xab, 0x6b, 0x65, 0x0a, 0x5c, 0xfe, 0xd9, 0xea, 0xf6, 0xc0, 0xb0, 0x48, 0xbd, 0xb8, 0x23, 0xae,
-	0x4a, 0x6a, 0xfb, 0x02, 0x1b, 0xb9, 0xd0, 0xbf, 0xab, 0xcc, 0x85, 0xcd, 0xc8, 0x92, 0x3a, 0x75,
-	0x32, 0x12, 0x8f, 0x5e, 0x5e, 0x39, 0x2f, 0xb5, 0xca, 0x79, 0x39, 0xfd, 0x56, 0x87, 0xc6, 0xbb,
-	0x64, 0xd1, 0xe0, 0x25, 0xc0, 0x7c, 0x0b, 0xe0, 0xde, 0xf1, 0x7c, 0x27, 0x15, 0x36, 0x86, 0xb1,
-	0x5f, 0x11, 0x8d, 0x57, 0x87, 0x05, 0xcd, 0xcc, 0x9a, 0xc0, 0x83, 0x2c, 0xbf, 0xb0, 0x40, 0x8c,
-	0x56, 0x8a, 0x90, 0x8c, 0xe8, 0x80, 0xe1, 0x07, 0xbd, 0x6f, 0x0a, 0xce, 0xc4, 0xa7, 0xd9, 0x7c,
-	0x55, 0xd6, 0x35, 0x3a, 0x29, 0x5e, 0x9e, 0x34, 0x60, 0xf8, 0x52, 0x4b, 0x8e, 0x9d, 0x97, 0x97,
-	0x9c, 0x35, 0xa4, 0xd1, 0x4e, 0x45, 0x33, 0x0b, 0x79, 0xc0, 0xd0, 0x85, 0xdd, 0x72, 0xe3, 0x61,
-	0xbf, 0x54, 0x78, 0x89, 0x37, 0x33, 0x4f, 0x5a, 0xa4, 0x0d, 0x18, 0x7e, 0x82, 0x9d, 0x52, 0x2b,
-	0xe1, 0x51, 0xf6, 0x8e, 0x4a, 0xb3, 0x19, 0x69, 0x81, 0x05, 0xd6, 0x80, 0xe1, 0x15, 0xb4, 0x4a,
-	0xec, 0x80, 0x87, 0xd9, 0xfc, 0x15, 0x76, 0x31, 0x8c, 0x14, 0x2d, 0xc7, 0x19, 0x30, 0x3c, 0x87,
-	0xc6, 0x6c, 0xa0, 0xb1, 0x93, 0x1b, 0x9f, 0xf4, 0x98, 0x3f, 0xf6, 0xd0, 0x67, 0xff, 0xff, 0x78,
-	0xe8, 0xb2, 0x9f, 0x0f, 0x5d, 0xf6, 0xeb, 0xa1, 0xcb, 0xae, 0x56, 0x53, 0x9f, 0xd0, 0xeb, 0x65,
-	0xfd, 0xe5, 0x7c, 0xf6, 0x3b, 0x00, 0x00, 0xff, 0xff, 0xc8, 0xcb, 0x19, 0x52, 0x58, 0x07, 0x00,
-	0x00,
+	0x10, 0x65, 0xc3, 0xcf, 0x47, 0x06, 0xc2, 0xcf, 0x04, 0x90, 0x3f, 0x07, 0x42, 0xe4, 0x8a, 0x92,
+	0x2b, 0xb0, 0xe8, 0x1b, 0x50, 0x2a, 0x83, 0xd4, 0x56, 0x95, 0x53, 0xf5, 0x02, 0xa9, 0x4d, 0x8d,
+	0x33, 0x42, 0x96, 0xc8, 0xda, 0xdd, 0x5d, 0x23, 0x51, 0xf5, 0xcd, 0xfa, 0x02, 0xbd, 0xec, 0x23,
+	0x54, 0xdc, 0xf4, 0x35, 0x2a, 0x6f, 0x9c, 0xc4, 0xbf, 0xbd, 0x6a, 0x7b, 0xb7, 0x3e, 0x33, 0x7b,
+	0xf6, 0xcc, 0x7a, 0xce, 0x2c, 0x74, 0x02, 0xae, 0x48, 0x70, 0xef, 0xee, 0x34, 0xba, 0x39, 0x55,
+	0x74, 0x47, 0x63, 0x52, 0xe2, 0xe1, 0x24, 0x12, 0xa1, 0x0a, 0xb1, 0x39, 0x03, 0xac, 0x97, 0xd0,
+	0x1a, 0x28, 0x41, 0xde, 0x78, 0x40, 0xb7, 0x63, 0xe2, 0x0a, 0x8f, 0x61, 0x53, 0xd2, 0xa7, 0x98,
+	0xb8, 0x4f, 0x43, 0x1e, 0x8f, 0x6f, 0x48, 0x18, 0xac, 0xc7, 0xfa, 0x2d, 0x77, 0x63, 0x0a, 0xbf,
+	0xd6, 0x28, 0x22, 0x2c, 0x8d, 0x3c, 0xe5, 0x19, 0x8d, 0x1e, 0xeb, 0xaf, 0xbb, 0x7a, 0x6d, 0xb5,
+	0x61, 0xdb, 0x21, 0x35, 0x20, 0x29, 0x83, 0x90, 0xbb, 0x49, 0xbe, 0x54, 0x56, 0x1f, 0x30, 0x0b,
+	0xca, 0x28, 0xe4, 0x92, 0x92, 0xed, 0x71, 0x1c, 0x8c, 0x34, 0x79, 0xd3, 0xd5, 0x6b, 0x6b, 0x0f,
+	0x76, 0x1c, 0x52, 0x6f, 0x44, 0x18, 0x91, 0x50, 0x01, 0xc9, 0x29, 0xc3, 0x57, 0x06, 0xab, 0x29,
+	0xfa, 0x80, 0x1b, 0xd0, 0x48, 0xb7, 0xb5, 0xdc, 0x46, 0x30, 0xc2, 0x1d, 0x58, 0x96, 0x7e, 0x18,
+	0x91, 0x16, 0xd2, 0x74, 0x27, 0x1f, 0x09, 0x3d, 0xf7, 0xc6, 0x64, 0x2c, 0x4e, 0xe8, 0x93, 0x35,
+	0xf6, 0x60, 0x6d, 0x44, 0xd2, 0x17, 0x41, 0xa4, 0x82, 0x90, 0x1b, 0x4b, 0x3a, 0x94, 0x85, 0xf0,
+	0x08, 0x5a, 0xc9, 0xbd, 0xdd, 0x92, 0x18, 0xde, 0x7b, 0x77, 0x31, 0x19, 0xcb, 0x3d, 0xd6, 0x5f,
+	0xbc, 0x5c, 0x70, 0xd7, 0x53, 0xf8, 0x5d, 0x82, 0xe2, 0x13, 0x58, 0x97, 0x4a, 0x04, 0xfc, 0x36,
+	0xcd, 0x5a, 0x49, 0x98, 0x2e, 0x17, 0xdc, 0xb5, 0x09, 0xaa, 0x93, 0xce, 0xff, 0x83, 0x65, 0x1d,
+	0xb5, 0x0e, 0xa0, 0xe3, 0x90, 0x7a, 0x45, 0x4a, 0x04, 0xfe, 0x45, 0x7a, 0x58, 0x28, 0x66, 0xc5,
+	0x7d, 0x80, 0xad, 0x62, 0x6c, 0x5e, 0x13, 0xab, 0xaa, 0xa9, 0x51, 0x5f, 0xd3, 0x62, 0xa9, 0x26,
+	0xeb, 0x10, 0x0e, 0xe6, 0x97, 0xfa, 0x50, 0x21, 0x20, 0x02, 0x2c, 0x47, 0xff, 0xe6, 0x35, 0x5b,
+	0x5d, 0xd8, 0x77, 0x48, 0x3d, 0xf7, 0x22, 0x15, 0x0b, 0xaa, 0x50, 0xf4, 0x05, 0xb6, 0x4b, 0x41,
+	0xec, 0x40, 0x53, 0xea, 0x4e, 0x1d, 0xce, 0x74, 0xad, 0x4e, 0x80, 0xab, 0x3f, 0xab, 0x6e, 0x1f,
+	0x4c, 0x87, 0xd4, 0x8b, 0x7b, 0xe2, 0xaa, 0x42, 0xdb, 0x67, 0xd8, 0x2c, 0x84, 0xfe, 0x9d, 0x32,
+	0x1f, 0xb6, 0x12, 0x27, 0x69, 0xea, 0x54, 0xcf, 0xef, 0x0f, 0x3f, 0x83, 0xdd, 0x82, 0x99, 0x87,
+	0x32, 0xe0, 0xfe, 0x44, 0x4c, 0xcb, 0x6d, 0xe7, 0x2d, 0x3d, 0x48, 0x42, 0x67, 0x3f, 0x97, 0xa0,
+	0xf9, 0x76, 0x3a, 0x1f, 0xf0, 0x0a, 0x60, 0x6e, 0x5e, 0xdc, 0x3f, 0x99, 0x8f, 0x92, 0x92, 0xd1,
+	0xcd, 0x83, 0x9a, 0x68, 0xea, 0x78, 0x1f, 0xf6, 0xaa, 0x1b, 0x11, 0xfb, 0xf9, 0x8d, 0xf5, 0xbd,
+	0x9a, 0x3b, 0xa2, 0x9c, 0x66, 0x33, 0x74, 0xa0, 0x95, 0x1b, 0x21, 0x78, 0x58, 0xc9, 0x3d, 0x1f,
+	0x2e, 0x66, 0xbb, 0x82, 0xd2, 0x66, 0xf8, 0x5e, 0xcf, 0xa2, 0x92, 0x6b, 0xf1, 0x69, 0x9e, 0xaf,
+	0xce, 0xd6, 0x66, 0x27, 0x93, 0x57, 0x4c, 0xb2, 0x19, 0x7e, 0x84, 0xdd, 0x4a, 0x0b, 0xe0, 0x71,
+	0x9e, 0xbf, 0xd6, 0x24, 0x66, 0xf6, 0x5f, 0x94, 0xb2, 0x6c, 0x86, 0xd7, 0xd0, 0xae, 0x68, 0x63,
+	0x3c, 0xca, 0xf3, 0xd7, 0xb4, 0xb9, 0x69, 0x66, 0xd2, 0x0a, 0x39, 0x36, 0xc3, 0x0b, 0x68, 0xce,
+	0x1a, 0x11, 0x3b, 0x85, 0xdf, 0x9e, 0x6d, 0x4f, 0xd3, 0xc8, 0x04, 0x73, 0x0f, 0x8d, 0xcd, 0xce,
+	0xff, 0xff, 0xf6, 0xd8, 0x65, 0xdf, 0x1f, 0xbb, 0xec, 0xc7, 0x63, 0x97, 0x5d, 0xaf, 0x65, 0x5e,
+	0xac, 0x9b, 0x15, 0xfd, 0x50, 0x3d, 0xfb, 0x15, 0x00, 0x00, 0xff, 0xff, 0xe8, 0x50, 0x33, 0x57,
+	0xc7, 0x06, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -941,12 +890,9 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type TelemetryClient interface {
 	GetSession(ctx context.Context, in *GetSessionRequest, opts ...grpc.CallOption) (*GetSessionResponse, error)
+	GetPropertyDescriptors(ctx context.Context, in *GetPropertyDescriptorsRequest, opts ...grpc.CallOption) (Telemetry_GetPropertyDescriptorsClient, error)
 	GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (Telemetry_GetPropertiesClient, error)
 	GetMetricDescriptors(ctx context.Context, in *GetMetricDescriptorsRequest, opts ...grpc.CallOption) (Telemetry_GetMetricDescriptorsClient, error)
-	// The data in the segment is a ResourceMetrics defined in:
-	// https://github.com/open-telemetry/opentelemetry-proto/blob/main/opentelemetry/proto/metrics/v1/metrics.proto
-	GetMetrics(ctx context.Context, in *GetMetricsRequest, opts ...grpc.CallOption) (Telemetry_GetMetricsClient, error)
-	GetPropertyDescriptors(ctx context.Context, in *GetPropertyDescriptorsRequest, opts ...grpc.CallOption) (Telemetry_GetPropertyDescriptorsClient, error)
 	GetCaptureDescriptors(ctx context.Context, in *GetCaptureDescriptorsRequest, opts ...grpc.CallOption) (Telemetry_GetCaptureDescriptorsClient, error)
 	GetEventDescriptors(ctx context.Context, in *GetEventDescriptorsRequest, opts ...grpc.CallOption) (Telemetry_GetEventDescriptorsClient, error)
 	GetStream(ctx context.Context, in *GetStreamRequest, opts ...grpc.CallOption) (Telemetry_GetStreamClient, error)
@@ -969,8 +915,40 @@ func (c *telemetryClient) GetSession(ctx context.Context, in *GetSessionRequest,
 	return out, nil
 }
 
+func (c *telemetryClient) GetPropertyDescriptors(ctx context.Context, in *GetPropertyDescriptorsRequest, opts ...grpc.CallOption) (Telemetry_GetPropertyDescriptorsClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Telemetry_serviceDesc.Streams[0], "/telemetry.Telemetry/GetPropertyDescriptors", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &telemetryGetPropertyDescriptorsClient{stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+type Telemetry_GetPropertyDescriptorsClient interface {
+	Recv() (*PropertyDescriptor, error)
+	grpc.ClientStream
+}
+
+type telemetryGetPropertyDescriptorsClient struct {
+	grpc.ClientStream
+}
+
+func (x *telemetryGetPropertyDescriptorsClient) Recv() (*PropertyDescriptor, error) {
+	m := new(PropertyDescriptor)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 func (c *telemetryClient) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...grpc.CallOption) (Telemetry_GetPropertiesClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Telemetry_serviceDesc.Streams[0], "/telemetry.Telemetry/GetProperties", opts...)
+	stream, err := c.cc.NewStream(ctx, &_Telemetry_serviceDesc.Streams[1], "/telemetry.Telemetry/GetProperties", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1002,7 +980,7 @@ func (x *telemetryGetPropertiesClient) Recv() (*Property, error) {
 }
 
 func (c *telemetryClient) GetMetricDescriptors(ctx context.Context, in *GetMetricDescriptorsRequest, opts ...grpc.CallOption) (Telemetry_GetMetricDescriptorsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Telemetry_serviceDesc.Streams[1], "/telemetry.Telemetry/GetMetricDescriptors", opts...)
+	stream, err := c.cc.NewStream(ctx, &_Telemetry_serviceDesc.Streams[2], "/telemetry.Telemetry/GetMetricDescriptors", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1033,72 +1011,8 @@ func (x *telemetryGetMetricDescriptorsClient) Recv() (*MetricDescriptor, error) 
 	return m, nil
 }
 
-func (c *telemetryClient) GetMetrics(ctx context.Context, in *GetMetricsRequest, opts ...grpc.CallOption) (Telemetry_GetMetricsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Telemetry_serviceDesc.Streams[2], "/telemetry.Telemetry/GetMetrics", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &telemetryGetMetricsClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type Telemetry_GetMetricsClient interface {
-	Recv() (*StreamSegment, error)
-	grpc.ClientStream
-}
-
-type telemetryGetMetricsClient struct {
-	grpc.ClientStream
-}
-
-func (x *telemetryGetMetricsClient) Recv() (*StreamSegment, error) {
-	m := new(StreamSegment)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *telemetryClient) GetPropertyDescriptors(ctx context.Context, in *GetPropertyDescriptorsRequest, opts ...grpc.CallOption) (Telemetry_GetPropertyDescriptorsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Telemetry_serviceDesc.Streams[3], "/telemetry.Telemetry/GetPropertyDescriptors", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &telemetryGetPropertyDescriptorsClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type Telemetry_GetPropertyDescriptorsClient interface {
-	Recv() (*PropertyDescriptor, error)
-	grpc.ClientStream
-}
-
-type telemetryGetPropertyDescriptorsClient struct {
-	grpc.ClientStream
-}
-
-func (x *telemetryGetPropertyDescriptorsClient) Recv() (*PropertyDescriptor, error) {
-	m := new(PropertyDescriptor)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
 func (c *telemetryClient) GetCaptureDescriptors(ctx context.Context, in *GetCaptureDescriptorsRequest, opts ...grpc.CallOption) (Telemetry_GetCaptureDescriptorsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Telemetry_serviceDesc.Streams[4], "/telemetry.Telemetry/GetCaptureDescriptors", opts...)
+	stream, err := c.cc.NewStream(ctx, &_Telemetry_serviceDesc.Streams[3], "/telemetry.Telemetry/GetCaptureDescriptors", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1130,7 +1044,7 @@ func (x *telemetryGetCaptureDescriptorsClient) Recv() (*CaptureDescriptor, error
 }
 
 func (c *telemetryClient) GetEventDescriptors(ctx context.Context, in *GetEventDescriptorsRequest, opts ...grpc.CallOption) (Telemetry_GetEventDescriptorsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Telemetry_serviceDesc.Streams[5], "/telemetry.Telemetry/GetEventDescriptors", opts...)
+	stream, err := c.cc.NewStream(ctx, &_Telemetry_serviceDesc.Streams[4], "/telemetry.Telemetry/GetEventDescriptors", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1162,7 +1076,7 @@ func (x *telemetryGetEventDescriptorsClient) Recv() (*EventDescriptor, error) {
 }
 
 func (c *telemetryClient) GetStream(ctx context.Context, in *GetStreamRequest, opts ...grpc.CallOption) (Telemetry_GetStreamClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Telemetry_serviceDesc.Streams[6], "/telemetry.Telemetry/GetStream", opts...)
+	stream, err := c.cc.NewStream(ctx, &_Telemetry_serviceDesc.Streams[5], "/telemetry.Telemetry/GetStream", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1196,12 +1110,9 @@ func (x *telemetryGetStreamClient) Recv() (*StreamSegment, error) {
 // TelemetryServer is the server API for Telemetry service.
 type TelemetryServer interface {
 	GetSession(context.Context, *GetSessionRequest) (*GetSessionResponse, error)
+	GetPropertyDescriptors(*GetPropertyDescriptorsRequest, Telemetry_GetPropertyDescriptorsServer) error
 	GetProperties(*GetPropertiesRequest, Telemetry_GetPropertiesServer) error
 	GetMetricDescriptors(*GetMetricDescriptorsRequest, Telemetry_GetMetricDescriptorsServer) error
-	// The data in the segment is a ResourceMetrics defined in:
-	// https://github.com/open-telemetry/opentelemetry-proto/blob/main/opentelemetry/proto/metrics/v1/metrics.proto
-	GetMetrics(*GetMetricsRequest, Telemetry_GetMetricsServer) error
-	GetPropertyDescriptors(*GetPropertyDescriptorsRequest, Telemetry_GetPropertyDescriptorsServer) error
 	GetCaptureDescriptors(*GetCaptureDescriptorsRequest, Telemetry_GetCaptureDescriptorsServer) error
 	GetEventDescriptors(*GetEventDescriptorsRequest, Telemetry_GetEventDescriptorsServer) error
 	GetStream(*GetStreamRequest, Telemetry_GetStreamServer) error
@@ -1214,17 +1125,14 @@ type UnimplementedTelemetryServer struct {
 func (*UnimplementedTelemetryServer) GetSession(ctx context.Context, req *GetSessionRequest) (*GetSessionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSession not implemented")
 }
+func (*UnimplementedTelemetryServer) GetPropertyDescriptors(req *GetPropertyDescriptorsRequest, srv Telemetry_GetPropertyDescriptorsServer) error {
+	return status.Errorf(codes.Unimplemented, "method GetPropertyDescriptors not implemented")
+}
 func (*UnimplementedTelemetryServer) GetProperties(req *GetPropertiesRequest, srv Telemetry_GetPropertiesServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetProperties not implemented")
 }
 func (*UnimplementedTelemetryServer) GetMetricDescriptors(req *GetMetricDescriptorsRequest, srv Telemetry_GetMetricDescriptorsServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetMetricDescriptors not implemented")
-}
-func (*UnimplementedTelemetryServer) GetMetrics(req *GetMetricsRequest, srv Telemetry_GetMetricsServer) error {
-	return status.Errorf(codes.Unimplemented, "method GetMetrics not implemented")
-}
-func (*UnimplementedTelemetryServer) GetPropertyDescriptors(req *GetPropertyDescriptorsRequest, srv Telemetry_GetPropertyDescriptorsServer) error {
-	return status.Errorf(codes.Unimplemented, "method GetPropertyDescriptors not implemented")
 }
 func (*UnimplementedTelemetryServer) GetCaptureDescriptors(req *GetCaptureDescriptorsRequest, srv Telemetry_GetCaptureDescriptorsServer) error {
 	return status.Errorf(codes.Unimplemented, "method GetCaptureDescriptors not implemented")
@@ -1256,6 +1164,27 @@ func _Telemetry_GetSession_Handler(srv interface{}, ctx context.Context, dec fun
 		return srv.(TelemetryServer).GetSession(ctx, req.(*GetSessionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
+}
+
+func _Telemetry_GetPropertyDescriptors_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(GetPropertyDescriptorsRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(TelemetryServer).GetPropertyDescriptors(m, &telemetryGetPropertyDescriptorsServer{stream})
+}
+
+type Telemetry_GetPropertyDescriptorsServer interface {
+	Send(*PropertyDescriptor) error
+	grpc.ServerStream
+}
+
+type telemetryGetPropertyDescriptorsServer struct {
+	grpc.ServerStream
+}
+
+func (x *telemetryGetPropertyDescriptorsServer) Send(m *PropertyDescriptor) error {
+	return x.ServerStream.SendMsg(m)
 }
 
 func _Telemetry_GetProperties_Handler(srv interface{}, stream grpc.ServerStream) error {
@@ -1297,48 +1226,6 @@ type telemetryGetMetricDescriptorsServer struct {
 }
 
 func (x *telemetryGetMetricDescriptorsServer) Send(m *MetricDescriptor) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _Telemetry_GetMetrics_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(GetMetricsRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(TelemetryServer).GetMetrics(m, &telemetryGetMetricsServer{stream})
-}
-
-type Telemetry_GetMetricsServer interface {
-	Send(*StreamSegment) error
-	grpc.ServerStream
-}
-
-type telemetryGetMetricsServer struct {
-	grpc.ServerStream
-}
-
-func (x *telemetryGetMetricsServer) Send(m *StreamSegment) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func _Telemetry_GetPropertyDescriptors_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(GetPropertyDescriptorsRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(TelemetryServer).GetPropertyDescriptors(m, &telemetryGetPropertyDescriptorsServer{stream})
-}
-
-type Telemetry_GetPropertyDescriptorsServer interface {
-	Send(*PropertyDescriptor) error
-	grpc.ServerStream
-}
-
-type telemetryGetPropertyDescriptorsServer struct {
-	grpc.ServerStream
-}
-
-func (x *telemetryGetPropertyDescriptorsServer) Send(m *PropertyDescriptor) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -1416,6 +1303,11 @@ var _Telemetry_serviceDesc = grpc.ServiceDesc{
 	},
 	Streams: []grpc.StreamDesc{
 		{
+			StreamName:    "GetPropertyDescriptors",
+			Handler:       _Telemetry_GetPropertyDescriptors_Handler,
+			ServerStreams: true,
+		},
+		{
 			StreamName:    "GetProperties",
 			Handler:       _Telemetry_GetProperties_Handler,
 			ServerStreams: true,
@@ -1423,16 +1315,6 @@ var _Telemetry_serviceDesc = grpc.ServiceDesc{
 		{
 			StreamName:    "GetMetricDescriptors",
 			Handler:       _Telemetry_GetMetricDescriptors_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "GetMetrics",
-			Handler:       _Telemetry_GetMetrics_Handler,
-			ServerStreams: true,
-		},
-		{
-			StreamName:    "GetPropertyDescriptors",
-			Handler:       _Telemetry_GetPropertyDescriptors_Handler,
 			ServerStreams: true,
 		},
 		{
@@ -1740,38 +1622,6 @@ func (m *MetricDescriptor) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i = encodeVarintTelemetry(dAtA, i, uint64(len(m.Scope)))
 		i--
 		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *GetMetricsRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *GetMetricsRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *GetMetricsRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	if m.SequenceNumberSince != 0 {
-		i = encodeVarintTelemetry(dAtA, i, uint64(m.SequenceNumberSince))
-		i--
-		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
@@ -2201,21 +2051,6 @@ func (m *MetricDescriptor) Size() (n int) {
 	l = len(m.Description)
 	if l > 0 {
 		n += 1 + l + sovTelemetry(uint64(l))
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-
-func (m *GetMetricsRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.SequenceNumberSince != 0 {
-		n += 1 + sovTelemetry(uint64(m.SequenceNumberSince))
 	}
 	if m.XXX_unrecognized != nil {
 		n += len(m.XXX_unrecognized)
@@ -3047,76 +2882,6 @@ func (m *MetricDescriptor) Unmarshal(dAtA []byte) error {
 			}
 			m.Description = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipTelemetry(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthTelemetry
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *GetMetricsRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowTelemetry
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: GetMetricsRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: GetMetricsRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field SequenceNumberSince", wireType)
-			}
-			m.SequenceNumberSince = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowTelemetry
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.SequenceNumberSince |= uint32(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipTelemetry(dAtA[iNdEx:])

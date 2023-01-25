@@ -10,10 +10,10 @@ import (
 type CaptureCallback func(context.Context) (interface{}, error)
 
 type CaptureDescriptor struct {
-	StreamId    serviceStreamId `json:"stream_id"`
-	Scope       string          `json:"scope"`
-	Name        string          `json:"name"`
-	Description string          `json:"description"`
+	StreamId    StreamId `json:"stream_id"`
+	Scope       string   `json:"scope"`
+	Name        string   `json:"name"`
+	Description string   `json:"description"`
 }
 
 type Capture struct {
@@ -40,7 +40,7 @@ func captureDescriptorToPb(descriptor CaptureDescriptor) *pb.CaptureDescriptor {
 
 func captureDescriptorFromPb(descriptor *pb.CaptureDescriptor) CaptureDescriptor {
 	return CaptureDescriptor{
-		StreamId:    serviceStreamId(descriptor.StreamId),
+		StreamId:    StreamId(descriptor.StreamId),
 		Scope:       descriptor.Scope,
 		Name:        descriptor.Name,
 		Description: descriptor.Description,

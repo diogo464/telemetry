@@ -16,10 +16,10 @@ type EventEmitter interface {
 }
 
 type EventDescriptor struct {
-	StreamId    serviceStreamId `json:"stream_id"`
-	Scope       string          `json:"scope"`
-	Name        string          `json:"name"`
-	Description string          `json:"description"`
+	StreamId    StreamId `json:"stream_id"`
+	Scope       string   `json:"scope"`
+	Name        string   `json:"name"`
+	Description string   `json:"description"`
 }
 
 type Event struct {
@@ -77,7 +77,7 @@ func eventDescriptorToPb(descriptor EventDescriptor) *pb.EventDescriptor {
 
 func eventDescriptorFromPb(descriptor *pb.EventDescriptor) EventDescriptor {
 	return EventDescriptor{
-		StreamId:    serviceStreamId(descriptor.StreamId),
+		StreamId:    StreamId(descriptor.StreamId),
 		Scope:       descriptor.Scope,
 		Name:        descriptor.Name,
 		Description: descriptor.Description,

@@ -61,12 +61,6 @@ func (s *Service) GetMetricDescriptors(req *pb.GetMetricDescriptorsRequest, srv 
 	return nil
 }
 
-func (s *Service) GetMetrics(req *pb.GetMetricsRequest, srv pb.Telemetry_GetMetricsServer) error {
-	stream := s.metrics.stream
-	since := req.GetSequenceNumberSince()
-	return grpcSendStreamSegments(stream, int(since), srv)
-}
-
 func (s *Service) GetCaptureDescriptors(req *pb.GetCaptureDescriptorsRequest, srv pb.Telemetry_GetCaptureDescriptorsServer) error {
 	descriptors := s.captures.copyDescriptors()
 	for _, v := range descriptors {
@@ -88,7 +82,7 @@ func (s *Service) GetEventDescriptors(req *pb.GetEventDescriptorsRequest, srv pb
 }
 
 func (s *Service) GetStream(req *pb.GetStreamRequest, srv pb.Telemetry_GetStreamServer) error {
-	streamId := serviceStreamId(req.GetStreamId())
+	streamId := StreamId(req.GetStreamId())
 	stream := s.streams.get(streamId)
 	if stream == nil {
 		return ErrStreamNotAvailable
@@ -97,12 +91,13 @@ func (s *Service) GetStream(req *pb.GetStreamRequest, srv pb.Telemetry_GetStream
 }
 
 func grpcSendStreamSegments(stream *stream.Stream, since int, srv grpcSegmentSender) error {
+	fmt.Println("Sending segments since", since)
 	for {
 		segments := stream.Segments(since, 128)
 		if len(segments) == 0 {
 			break
 		}
-		since += len(segments)
+		since = segments[len(segments)-1].SeqN + 1
 		fmt.Println("Sending", len(segments), "segments")
 		for _, segment := range segments {
 			err := srv.Send(&pb.StreamSegment{

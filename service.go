@@ -139,7 +139,3 @@ func (s *Service) Close() {
 	s.grpcServer.GracefulStop()
 	s.cancel()
 }
-
-func (s *Service) newStream() *stream.Stream {
-	return stream.New()
-}
