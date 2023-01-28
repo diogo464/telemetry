@@ -52,7 +52,7 @@ func New(meterProvider metric.MeterProvider) (*Metrics, error) {
 	m := meterProvider.Meter(Scope.Name, metric.WithInstrumentationVersion(Scope.Version), metric.WithSchemaURL(Scope.SchemaURL))
 
 	DiscoveredPeers, err := m.SyncInt64().Counter(
-		"discovered_peers",
+		"monitor.discovered_peers",
 		instrument.WithDescription("Number of peers discovered, including duplicates"),
 		instrument.WithUnit(unit.Dimensionless),
 	)
@@ -61,7 +61,7 @@ func New(meterProvider metric.MeterProvider) (*Metrics, error) {
 	}
 
 	RediscoveredPeers, err := m.SyncInt64().Counter(
-		"rediscovered_peers",
+		"monitor.rediscovered_peers",
 		instrument.WithDescription("Number of peers rediscovered"),
 		instrument.WithUnit(unit.Dimensionless),
 	)
@@ -70,7 +70,7 @@ func New(meterProvider metric.MeterProvider) (*Metrics, error) {
 	}
 
 	ActivePeers, err := m.AsyncInt64().Gauge(
-		"active_peers",
+		"monitor.active_peers",
 		instrument.WithDescription("Number of peers currently being monitored"),
 		instrument.WithUnit(unit.Dimensionless),
 	)
@@ -97,7 +97,7 @@ func NewPeerTaskMetrics(meterProvider metric.MeterProvider) (*PeerTaskMetrics, e
 	m := meterProvider.Meter(Scope.Name, metric.WithInstrumentationVersion(Scope.Version), metric.WithSchemaURL(Scope.SchemaURL))
 
 	CollectCompleted, err := m.SyncInt64().Counter(
-		"collect_completed",
+		"monitor.collect_completed",
 		instrument.WithDescription("Number of collect completions"),
 		instrument.WithUnit(unit.Dimensionless),
 	)
@@ -106,7 +106,7 @@ func NewPeerTaskMetrics(meterProvider metric.MeterProvider) (*PeerTaskMetrics, e
 	}
 
 	CollectFailure, err := m.SyncInt64().Counter(
-		"collect_failure",
+		"monitor.collect_failure",
 		instrument.WithDescription("Number of collect failures"),
 		instrument.WithUnit(unit.Dimensionless),
 	)
@@ -124,7 +124,7 @@ func NewExportMetrics(meterProvider metric.MeterProvider) (*ExporterMetrics, err
 	m := meterProvider.Meter(Scope.Name, metric.WithInstrumentationVersion(Scope.Version), metric.WithSchemaURL(Scope.SchemaURL))
 
 	Exports, err := m.SyncInt64().Counter(
-		"exports",
+		"monitor.exports",
 		instrument.WithDescription("Number of exports"),
 		instrument.WithUnit(unit.Dimensionless),
 	)

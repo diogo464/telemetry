@@ -33,7 +33,7 @@ func New(meterProvider metric.MeterProvider) (*Metrics, error) {
 	m := meterProvider.Meter(Scope.Name, metric.WithInstrumentationVersion(Scope.Version), metric.WithSchemaURL(Scope.SchemaURL))
 
 	PeersCurrentCrawl, err := m.AsyncInt64().Gauge(
-		"peers_current_crawl",
+		"crawler.peers",
 		instrument.WithDescription("Number unique peers found in this crawl"),
 		instrument.WithUnit(unit.Dimensionless),
 	)
@@ -42,7 +42,7 @@ func New(meterProvider metric.MeterProvider) (*Metrics, error) {
 	}
 
 	PeersLastCrawl, err := m.AsyncInt64().Gauge(
-		"peers_last_crawl",
+		"crawler.peers_last_crawl",
 		instrument.WithDescription("Number of unique peers found in the last crawl"),
 		instrument.WithUnit(unit.Dimensionless),
 	)
@@ -51,7 +51,7 @@ func New(meterProvider metric.MeterProvider) (*Metrics, error) {
 	}
 
 	PeersTelemetryCurrentCrawl, err := m.AsyncInt64().Gauge(
-		"peers_telemetry_current_crawl",
+		"crawler.peers_telemetry",
 		instrument.WithDescription("Number of unique peers found in this crawl supporting the telemetry protocol"),
 		instrument.WithUnit(unit.Dimensionless),
 	)
@@ -60,7 +60,7 @@ func New(meterProvider metric.MeterProvider) (*Metrics, error) {
 	}
 
 	PeersTelemetryLastCrawl, err := m.AsyncInt64().Gauge(
-		"peers_telemetry_last_crawl",
+		"crawler.peers_telemetry_last_crawl",
 		instrument.WithDescription("Number of unique peers found in the last crawl supporting the telemetry protocol"),
 		instrument.WithUnit(unit.Dimensionless),
 	)
@@ -69,7 +69,7 @@ func New(meterProvider metric.MeterProvider) (*Metrics, error) {
 	}
 
 	ErrorsCurrentCrawl, err := m.AsyncInt64().Gauge(
-		"errors_current_crawl",
+		"crawler.errors",
 		instrument.WithDescription("Number of errors in this crawl"),
 		instrument.WithUnit(unit.Dimensionless),
 	)
@@ -78,7 +78,7 @@ func New(meterProvider metric.MeterProvider) (*Metrics, error) {
 	}
 
 	ErrorsLastCrawl, err := m.AsyncInt64().Gauge(
-		"errors_last_crawl",
+		"crawler.errors_last_crawl",
 		instrument.WithDescription("Number of errros in the last crawl"),
 		instrument.WithUnit(unit.Dimensionless),
 	)
@@ -87,7 +87,7 @@ func New(meterProvider metric.MeterProvider) (*Metrics, error) {
 	}
 
 	CompletedCrawls, err := m.AsyncInt64().Counter(
-		"completed_crawls",
+		"crawler.completed_crawls",
 		instrument.WithDescription("Number of completed crawls"),
 		instrument.WithUnit(unit.Dimensionless),
 	)
